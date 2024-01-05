@@ -36,12 +36,14 @@ const formattedDate = `${today.getFullYear()}년 ${
 
 const day = ["일", "월", "화", "수", "목", "금", "토"];
 const formattedDay = `${day[today.getDay()]}요일`;
+const taskLeft = 0;
 
 function TodoHead() {
   return (
     <TodoHeadBlock>
       <h1>{formattedDate}</h1>
       <div className="day">{formattedDay}</div>
+      <div className="tasks-left">할 일 {taskLeft}개 남음</div>
     </TodoHeadBlock>
   );
 }
