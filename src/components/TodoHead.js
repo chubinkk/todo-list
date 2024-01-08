@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTodoState } from "../redux/TodoContext";
 
 const TodoHeadBlock = styled.div`
   padding-top: 48px;
@@ -29,21 +30,24 @@ const TodoHeadBlock = styled.div`
     font-weight: bold;
   }
 `;
-const today = new Date();
-const formattedDate = `${today.getFullYear()}년 ${
-  today.getMonth() + 1
-}월 ${today.getDate()}일`;
-
-const day = ["일", "월", "화", "수", "목", "금", "토"];
-const formattedDay = `${day[today.getDay()]}요일`;
-const taskLeft = 0;
 
 function TodoHead() {
+  const todos = useTodoState();
+  const undonetasks = todos.filter((todo) => !todo.done);
+
+  const today = new Date();
+  const dateString = today.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const dayName = today.toLocaleDateString("ko-KR", { weekday: "long" });
+
   return (
     <TodoHeadBlock>
-      <h1>{formattedDate}</h1>
-      <div className="day">{formattedDay}</div>
-      <div className="tasks-left">할 일 {taskLeft}개 남음</div>
+      <h1>{dateString}</h1>
+      <div className="day">{dayName}</div>
+      <div className="tasks-left">할 일 {undonetasks.length}개 남음</div>
     </TodoHeadBlock>
   );
 }
