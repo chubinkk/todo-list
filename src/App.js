@@ -4,16 +4,19 @@ import TodoTemplate from "./components/TodoTemplate";
 import TodoHead from "./components/TodoHead";
 import TodoList from "./components/TodoList";
 import TodoCreate from "./components/TodoCreate";
+import { TodoProvider } from "./redux/TodoContext";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <TodoTemplate>
-          <TodoHead></TodoHead>
-          <TodoList></TodoList>
-          <TodoCreate></TodoCreate>
-        </TodoTemplate>
+        <TodoProvider>
+          <TodoTemplate>
+            <TodoHead></TodoHead>
+            <TodoList></TodoList>
+            <TodoCreate></TodoCreate>
+          </TodoTemplate>
+        </TodoProvider>
       </header>
     </div>
   );
