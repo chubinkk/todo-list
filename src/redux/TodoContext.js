@@ -1,16 +1,25 @@
 import React, { createContext, useContext, useReducer, useRef } from "react";
 
-const initialTodos = [];
+const initialTodos = [
+  {
+    id: 1,
+    text: "프로젝트 생성하기",
+    done: true,
+  },
+];
 
 function todoReducer(state, action) {
   switch (action.type) {
     case "CREATE":
+      console.log("created!!");
       return state.concat(action.todo);
     case "TOGGLE":
+      console.log("toggled!!");
       return state.map((todo) =>
         todo.id === action.id ? { ...todo, done: !todo.done } : todo
       );
     case "REMOVE":
+      console.log("removed!!");
       return state.filter((todo) => todo.id !== action.id);
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
